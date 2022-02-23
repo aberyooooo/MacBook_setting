@@ -61,7 +61,7 @@ $ vi ~/.zshrc
 export PS1=$'\n'"%~ %# "
 ```
 
-7. Ginのブランチ表示
+7. Gitのブランチ表示
 ```
 # .zshrcに以下を追加する
 $ vi ~/.zshrc
