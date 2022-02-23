@@ -8,7 +8,6 @@ git clone https://github.com/tomislav/osx-terminal.app-colors-solarized solarize
 
 2. Solarizedをターミナルで読み込んでデフォルトに設定
 
-
 3. Vimの配色設定
 ```
 # SolarizedのVimカラーをダウンロードする
@@ -28,7 +27,6 @@ colorscheme solarized
 
 4. lsの配色設定
 ```
-
 # GNU版のlsをインストールする
 $ brew install coreutils
 
@@ -48,8 +46,10 @@ $ source ~/.zprofile
 ```
 
 5. lsカラーテーマに関するファイルをカスタマイズ
+
 dircolors.256darkを参照
 （色確認のコマンドは以下）
+
 ```
 for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done;echo
 ```
