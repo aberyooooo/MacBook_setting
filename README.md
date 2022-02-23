@@ -53,3 +53,35 @@ dircolors.256darkを参照
 ```
 for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done;echo
 ```
+
+6. プロンプトの変更
+```
+# .zshrcに以下を追加する（カレントディレクトリ ユーザー種別）
+$ vi ~/.zshrc
+export PS1=$'\n'"%~ %# "
+```
+
+7. Ginのブランチ表示
+```
+# .zshrcに以下を追加する
+$ vi ~/.zshrc
+# git ブランチ名を色付きで表示させるメソッド
+function rprompt-git-current-branch {
+  local branch_name st branch_status
+ 
+  if [ ! -e  ".git" ]; then
+    # git 管理されていないディレクトリは何も返さない
+    return
+  fi
+  branch_name=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
+  st=`git status 2> /dev/null`
+  # ブランチ名を表示する
+  echo "[$branch_name]"
+}
+ 
+# プロンプトが表示されるたびにプロンプト文字列を評価、置換する
+setopt prompt_subst
+ 
+# プロンプトの右側にメソッドの結果を表示させる
+RPROMPT='`rprompt-git-current-branch`'
+```
