@@ -1,0 +1,35 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      docker: 19
+    commands:
+      - echo Installing dependencies...
+      - apt-get update
+      - apt-get install -y curl jq file
+
+  pre_build:
+    commands:
+      - echo Downloading GitHub Actions runner...
+      - curl -o actions-runner-linux-x64.tar.gz -L https://github.com/actions/runner/releases/download/v2.285.1/actions-runner-linux-x64-2.285.1.tar.gz
+      - echo "Downloaded file details:"
+      - ls -lh actions-runner-linux-x64.tar.gz
+      - file actions-runner-linux-x64.tar.gz
+      - echo Extracting GitHub Actions runner...
+      - mkdir -p actions-runner
+      - tar xzf ./actions-runner-linux-x64.tar.gz -C actions-runner
+
+  build:
+    commands:
+      - echo Build phase...
+      # Add your build commands here
+
+  post_build:
+    commands:
+      - echo Post build phase...
+      # Add your post build commands here
+
+artifacts:
+  files:
+    - '**/*'
