@@ -1,18 +1,7 @@
-name: CI Workflow
-# mainブランチに変更がプッシュされたときにワークフローをトリガー
-on:
-  push:
-    branches:
-     - main
-     
+name: Hello World
+on: [push]
 jobs:
-  build:
-    runs-on: self-hosted  # セルフホステッドランナーを使用
+  Hello-World-Job:
+    runs-on: codebuild-GithubActionsTest-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
-     - name: Checkout code
-       uses: actions/checkout@v2  # リポジトリのコードをチェックアウト
-
-     - name: Run build script
-       run: |
-         echo "Running build on self-hosted runner"
-         ./build.sh
+      - run: echo "Hello World!"
